@@ -16,6 +16,8 @@ import { CoachProfileComponent } from './coach/coach-profile/coach-profile.compo
 import { StudentProfileComponent } from './student/student-profile/student-profile.component';
 import { PickTestComponent } from './student/pick-test/pick-test.component';
 import { PassTestComponent } from './student/pass-test/pass-test.component';
+import { RoleGuard } from './shared/guards/role.guard';
+import { AuthGuard } from './shared/guards/auth.guard';
 
 const routes: Routes =[
     { path: '', redirectTo: 'landing', pathMatch: 'full' },
@@ -28,6 +30,10 @@ const routes: Routes =[
     { 
         path: 'coach', 
         component: CoachDasboardComponent,
+        canActivate: [RoleGuard], 
+        data: { 
+          expectedRole: 'COACH'
+        },
         children: [
             {path: '', redirectTo: 'profile', pathMatch: 'full'},
             {path: 'profile', component: CoachProfileComponent},
@@ -38,6 +44,10 @@ const routes: Routes =[
     { 
         path: 'student', 
         component: StudentDasboardComponent,
+        canActivate: [RoleGuard], 
+        data: { 
+          expectedRole: 'STUDENT'
+        } ,
         children: [
             {path: '', redirectTo: 'profile', pathMatch: 'full'},
             {path: 'profile', component: StudentProfileComponent},

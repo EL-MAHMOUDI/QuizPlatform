@@ -1,0 +1,78 @@
+<div class="page-header">
+    <div class="page-header-image" style="background-image:url(assets/img/Register.jpg)"></div>
+    <div class="container">
+        <div class="col-md-3 content-center">
+            <div class="card card-login card-plain">
+                        <h2>Add a new Test</h2>
+                        <mat-form-field class="example-chip-list">
+                            <mat-label style="color: white;"><h6> Category...</h6></mat-label>
+                            <mat-chip-list #chipList aria-label="Category selection">
+                                <mat-chip *ngFor="let category of categories" [selectable]="selectable"
+                                    [removable]="removable" (removed)="remove(category)">
+                                    {{category}}
+                                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                </mat-chip>
+                                <input #categoryInput [formControl]="categoryCtrl" [matAutocomplete]="auto"
+                                    [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                    (matChipInputTokenEnd)="add($event)">
+                            </mat-chip-list>
+                            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                                <mat-option *ngFor="let category of filteredCategories | async" [value]="category">
+                                    {{category}}
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field><br>
+
+                   <div >
+                    <label id="example-radio-group-label"><h6>Pick difficulty level</h6></label>
+                    <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+                        [(ngModel)]="testLevel"><br>
+                        <mat-radio-button style="margin-left: 40px;" class="example-radio-button" *ngFor="let level of levels" [value]="level">
+                            {{level}}
+                        </mat-radio-button>
+                    </mat-radio-group>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary btn-round" type="button" (click)="openDialog()">
+                            <i style="margin-right: 2px;" class="now-ui-icons ui-1_simple-add"></i>Add question
+                        </button>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container" *ngIf="coachService.questions.length !== 0">
+  <table class="table my-5" >
+      <thead>
+        <tr class="d-flex">
+          <th class="col-1"></th>
+          <th class="col-7">Question</th>
+          <th class="col-2">Answer</th>
+          <th class="col-2">Manage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let question of coachService.questions, let i=index" class="d-flex">
+          <th class="col-1">{{i+1}}</th>
+          <td class="col-7">{{question.question}}</td>
+          <td class="col-2">{{question.answer}}</td>
+          <td class="col-2">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" style="margin-right: 20px; color: rgb(30, 148, 202); cursor: pointer;" >create</mat-icon>
+            <mat-icon aria-hidden="false" aria-label="Example home icon" style="color:red; cursor: pointer;" (click)="onDelete(i)">delete_forever</mat-icon>    
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="row">
+    <div class="col-md-3 offset-md-2">
+      <button class="btn btn-danger btn-round" type="button"  (click)="onResetAll()">
+          <i style="margin-right: 2px;" class="now-ui-icons ui-1_simple-add"></i>Reset all
+      </button>
+    </div>
+    <div class="col-md-3 offset-md-3">
+      <button class="btn btn-info btn-round" type="button" (click)="onAddTest()" [disabled]="testLevel===undefined || categories.length ===0">
+          <i style="margin-right: 2px;" class="now-ui-icons ui-1_simple-add"></i>Add test
+      </button>
+    </div>
+  </div>
+</div>

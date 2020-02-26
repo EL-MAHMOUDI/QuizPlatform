@@ -1,0 +1,65 @@
+<div class="page-header" >
+  <div class="page-header-image" style="background-image:url(assets/img/Register.jpg)"></div>
+  <div class="container">
+    <div class="col-md-3 content-center">
+      <div class="card card-login card-plain">
+      <div class="content">
+        <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+          <div class="row">
+
+          <mat-form-field class="col-md-5 my-3" >
+            <mat-label style="color: white;">Enter your first name*</mat-label>
+            <input matInput formControlName="firstName">
+            <mat-error style="color: white" *ngIf="firstName.invalid">{{getFirstNameErrorMessage()}}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-md-5 offset-md-1 my-3">
+          <mat-label style="color: white;">Enter your last name*</mat-label>
+          <input matInput formControlName="lastName">
+          <mat-error style="color: white" *ngIf="lastName.invalid">{{getLastNameErrorMessage()}}
+          </mat-error>
+      </mat-form-field>
+      <mat-form-field class="col-md-5 my-3">
+        <mat-label style="color: white;">Enter your email*</mat-label>
+        <input matInput placeholder="pat@example.com" formControlName="email">
+        <mat-error style="color: white" *ngIf="email.invalid">{{getEmailErrorMessage()}}
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field class="col-md-5 offset-md-1 my-3">
+      <mat-label style="color: white;">Enter a username*</mat-label>
+      <input matInput formControlName="username">
+      <mat-error style="color: white" *ngIf="username.invalid">{{getUsernameErrorMessage()}}
+      </mat-error>
+  </mat-form-field>
+      <div class="col-md-6 my-3">
+          <mat-form-field>
+              <mat-label style="color: white;">Enter your password*</mat-label>
+              <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+              <mat-error style="color: white" *ngIf="password.invalid">
+                  {{getPasswordErrorMessage()}}</mat-error>
+          </mat-form-field>
+          <mat-icon (click)="hide = !hide" >{{hide ? 'visibility_off' : 'visibility'}}
+          </mat-icon>
+      </div>
+      <div class="col-md-6 my-3">
+          <mat-form-field >
+            <mat-label style="color: white;">Confirm your password*</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="confirmedPassword">
+            <mat-hint style="color: white" *ngIf="registerForm.invalid">
+                {{getConfirmedPasswordErrorMessage()}}</mat-hint>
+        </mat-form-field>
+        <mat-icon (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}
+        </mat-icon>
+      </div>
+          <div class="footer text-center" class="col-md-6 offset-md-3 my-3">
+          <button class="btn btn-primary btn-round btn-lg btn-block"
+              [disabled]="registerForm.invalid" type="submit">Register
+              Now</button>
+          </div>
+        </div>
+      </form>
+    </div>
+      </div>
+    </div>
+</div>
+</div>

@@ -1,0 +1,70 @@
+<div class="wrapper">
+  <div class="page-header page-header-small">
+      <div class="page-header-image rellax-header" data-rellax-speed="-8" style="background-image: url('assets/img/Back1.jpg');">
+      </div>
+      <div class="container">
+          <div class="content-center">
+              <h2 class="title">"Hustle Till You No Longer Have To Introduce Yourself."</h2>
+              <div class="text-center">
+                <a href="#pablo" class="btn btn-primary btn-icon btn-round">
+                  <i class="fab fa-facebook-square"></i>
+                </a>
+                <a href="#pablo" class="btn btn-primary btn-icon btn-round">
+                  <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#pablo" class="btn btn-primary btn-icon btn-round">
+                  <i class="fab fa-google-plus"></i>
+                </a>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="section section-about-us">
+      <div class="container">
+          <div class="row">
+              <div class="col-md-8 ml-auto mr-auto text-center">
+                  <h2 class="title">Who we are?</h2>
+                  <h5 class="description">We are a passionate team of expert developpers, eager to help you prepare for your job interview.</h5>
+              </div>
+          </div>
+          <div class="separator separator-primary"></div>
+          <div class="row">
+            <div class="col-md-8 ml-auto mr-auto text-center">
+                <h2 class="title">About the Platform</h2>
+                <h5 class="description">Our platform provides more than 100 different quiz tests related to different topics, like: Spring, Angular and Kafka. Coach are fully available to evaluate your test and give you there feed-back. 
+                    Try the <a routerLink="/quiz"> Quick Test </a> or<a routerLink="/register"> Create an Account </a>to join the community.</h5>
+            </div>
+        </div>
+        
+        <div class="separator separator-primary"></div>
+        <div class="row">
+            <div class="col-md-8 ml-auto mr-auto text-center">
+                <h2 class="title">Want to work with us?</h2>
+            <p class="description">Your project is very important to us.</p>
+                    <div class="input-group input-lg" [ngClass]="{'input-group-focus':focus===true}">
+                        <div class="input-group-prepend" >
+                          <span class="input-group-text">
+                              <i class="now-ui-icons users_circle-08"></i>
+                          </span>
+                        </div>
+                          <input type="text" class="form-control" placeholder="Left Font Awesome Icon" (focus)="focus=true" (blur)="focus=false">
+                      </div>
+                      <div class="input-group input-lg" [ngClass]="{'input-group-focus':focus1===true}">
+                        <div class="input-group-prepend" >
+                          <span class="input-group-text">
+                                <i class="now-ui-icons ui-1_email-85"></i>
+                          </span>
+                        </div>
+                          <input type="text" class="form-control" placeholder="Left Font Awesome Icon" (focus)="focus1=true" (blur)="focus1=false">
+                      </div>
+                        <div class="textarea-container">
+                            <textarea class="form-control" name="name" rows="4" cols="80" placeholder="Type a message..."></textarea>
+                        </div>
+                        <div class="send-button">
+                            <a href="#pablo" class="btn btn-primary btn-round btn-block btn-lg">Send Message</a>
+                        </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

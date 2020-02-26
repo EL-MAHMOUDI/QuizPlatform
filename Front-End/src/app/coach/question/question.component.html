@@ -1,0 +1,56 @@
+<h3 class="text-center text-primary" >Add a question</h3>
+<div mat-dialog-content>
+  <form class="example-form" [formGroup]="questionForm" (ngSubmit)="onConfirm()">
+    <mat-form-field class="example-full-width">
+      <mat-label>Write your question in here...</mat-label>
+      <textarea matInput rows="4" cols="50" formControlName="question"></textarea>
+      <mat-error *ngIf="questionForm.get('question').hasError('required')">
+        This field is required
+      </mat-error>
+    </mat-form-field><br>
+    <mat-form-field class="example-full-width">
+      <mat-label>Option 1</mat-label>
+      <input matInput formControlName="option1">
+      <mat-error *ngIf="questionForm.get('option1').hasError('required')">
+        This field is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Option 2</mat-label>
+      <input matInput formControlName="option2">
+      <mat-error *ngIf="questionForm.get('option2').hasError('required')">
+        This field is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Option 3</mat-label>
+      <input matInput formControlName="option3">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Option 4</mat-label>
+      <input formControlName="option4" matInput>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Select your car (required)</mat-label>
+      <select matNativeControl required formControlName="answer">
+        <option label="--select answer --"></option>
+        <option value="1">option 1</option>
+        <option value="2">option 2</option>
+        <option value="3">option 3</option>
+        <option value="4">option 4</option>
+      </select>
+      <mat-error *ngIf="questionForm.get('answer').hasError('required')">
+        This field is required
+      </mat-error>
+      <mat-hint>You can pick up your answer here</mat-hint>
+    </mat-form-field>
+    <div mat-dialog-actions class="row">
+      <div class="col-md-3">
+        <button mat-button class="btn btn-danger btn-round"  type="button" (click)="onCancel()"><i style="margin-right: 5px;" class="now-ui-icons ui-1_simple-remove"></i>Cancel</button>
+      </div>
+      <div class="col-md-3 offset-md-6">
+      <button mat-button class="btn btn-success btn-round" [disabled]="questionForm.invalid"><i style="margin-right: 5px;" class="now-ui-icons ui-1_check"></i>Confirm</button>
+    </div>
+    </div>
+  </form>
+</div>

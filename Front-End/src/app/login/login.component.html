@@ -1,0 +1,61 @@
+<div class="page-header" filter-color="blue">
+    <div class="page-header-image" style="background-image:url(assets/img/Landing.jpg)"></div>
+    <div class="container" >
+        <div class="col-md-4 content-center">
+            <div class="card card-login card-plain">
+            
+                    <div class="header header-primary text-center">
+                        <div class="logo-container">
+                            <img src="assets/img/now-logo.png" alt="">
+                        </div>
+                    </div>
+                    <div class="content">
+
+
+                        <div class="example-container">
+                            <div class="example-container">
+                                <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+                                    <!--  
+                                    <mat-form-field>
+                                        <mat-label style="color: white;">Enter your email*</mat-label>
+                                        <input matInput placeholder="pat@example.com" formControlName="email">
+                                        <mat-error style="color: white" *ngIf="email.invalid">{{getEmailErrorMessage()}}
+                                        </mat-error>
+                                    </mat-form-field>
+                                    -->
+                                    <mat-form-field>
+                                        <mat-label style="color: white;">Enter your username*</mat-label>
+                                        <input matInput formControlName="username">
+                                        <mat-error style="color: white" *ngIf="username.invalid">{{getUsernameErrorMessage()}}
+                                        </mat-error>
+                                    </mat-form-field>
+
+                                    <mat-form-field class="my-2">
+                                        <mat-label style="color: white;">Enter your password*</mat-label>
+                                        <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                                        <mat-error style="color: white" *ngIf="password.invalid">
+                                            {{getPasswordErrorMessage()}}</mat-error>
+                                    </mat-form-field>
+                                    <mat-icon (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}
+                                    </mat-icon>
+                                    <div class="footer text-center">
+                                    <button class="btn btn-primary btn-round btn-lg btn-block"
+                                        [disabled]="loginForm.invalid" type="submit">Get
+                                        Started</button>
+                                    </div>
+                                    <br><small class = "text-danger" *ngIf="!success">Bad Credentials</small>
+                                </form>
+
+                            </div>
+                        </div>
+                        <div class="pull-left">
+                            <h6>
+                                <a routerLink="/register" class="link">Create Account</a>
+                            </h6>
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+<div class="page-header">
+  <div class="page-header-image" style="background-image:url(assets/img/Register.jpg)"></div>
+  <div class="container">
+      <div class="col-md-3 content-center">
+          <div class="card card-login card-plain">
+                      <h2>Show the world what your are able to reach !</h2>
+                      <mat-form-field class="example-chip-list">
+                          <mat-label style="color: white;"><h6> Category...</h6></mat-label>
+                          <mat-chip-list #chipList aria-label="Category selection">
+                              <mat-chip *ngFor="let category of categories" [selectable]="selectable"
+                                  [removable]="removable" (removed)="remove(category)">
+                                  {{category}}
+                                  <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                              </mat-chip>
+                              <input #categoryInput [formControl]="categoryCtrl" [matAutocomplete]="auto"
+                                  [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                  (matChipInputTokenEnd)="add($event)">
+                          </mat-chip-list>
+                          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                              <mat-option *ngFor="let category of filteredCategories | async" [value]="category">
+                                  {{category}}
+                              </mat-option>
+                          </mat-autocomplete>
+                      </mat-form-field><br>
+
+                 <div >
+                  <label id="example-radio-group-label"><h6>Pick difficulty level</h6></label>
+                  <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+                      [(ngModel)]="testLevel"><br>
+                      <mat-radio-button style="margin-left: 40px;" class="example-radio-button" *ngFor="let level of levels" [value]="level">
+                          {{level}}
+                      </mat-radio-button>
+                  </mat-radio-group>
+                  </div>
+                  <div>
+                      <button class="btn btn-primary btn-round" type="button">
+                          <i style="margin-right: 2px;" class="now-ui-icons ui-1_simple-add"></i>I am ready
+                      </button>
+                  </div>
+          </div>
+      </div>
+  </div>
+</div>

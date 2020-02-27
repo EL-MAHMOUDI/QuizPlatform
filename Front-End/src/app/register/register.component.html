@@ -38,24 +38,26 @@
               <mat-error style="color: white" *ngIf="password.invalid">
                   {{getPasswordErrorMessage()}}</mat-error>
           </mat-form-field>
-          <mat-icon (click)="hide = !hide" >{{hide ? 'visibility_off' : 'visibility'}}
+          <mat-icon (click)="hide = !hide" style="cursor: pointer;">{{hide ? 'visibility_off' : 'visibility'}}
           </mat-icon>
       </div>
       <div class="col-md-6 my-3">
           <mat-form-field >
             <mat-label style="color: white;">Confirm your password*</mat-label>
-            <input matInput [type]="hide ? 'password' : 'text'" formControlName="confirmedPassword">
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="passwordConfirmation">
             <mat-hint style="color: white" *ngIf="registerForm.invalid">
-                {{getConfirmedPasswordErrorMessage()}}</mat-hint>
+                {{getPasswordConfirmationErrorMessage()}}</mat-hint>
         </mat-form-field>
-        <mat-icon (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}
+        <mat-icon (click)="hide = !hide" style="cursor: pointer;">{{hide ? 'visibility_off' : 'visibility'}}
         </mat-icon>
       </div>
           <div class="footer text-center" class="col-md-6 offset-md-3 my-3">
           <button class="btn btn-primary btn-round btn-lg btn-block"
               [disabled]="registerForm.invalid" type="submit">Register
               Now</button>
+              <small *ngIf="!success">Username is already taken.</small>
           </div>
+          
         </div>
       </form>
     </div>

@@ -57,6 +57,7 @@ onLogin(){
       this.authService.saveToken(jwt);
       console.log(this.authService.isCoach());
       console.log(this.authService.isStudent());
+      console.log(this.loginForm.value);
       
       if(this.authService.isStudent()){
         this.router.navigateByUrl('/student');

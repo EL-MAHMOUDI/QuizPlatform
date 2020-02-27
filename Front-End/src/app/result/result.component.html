@@ -1,45 +1,14 @@
 <div class="page-header" >
-  <div class="page-header-image" style="background-image:url(assets/img/Back2.jpg)"></div>
+  <div class="page-header-image" style="background-image:url(assets/img/Result.jpg)"></div>
   <div class="container">
-    <div class="col-md-4 content-center">
-      <div class="card card-login card-plain">
-        <span>Question {{quizService.qnProgress+1}}</span><br>
-        <small *ngIf="elapsedTime">Time elapsed: {{elapsedTime | timer:examTime}}</small>
-        <p>{{quizService.questions?._embedded?.questions[quizService.qnProgress]?.question}}</p>
-        <form [formGroup]="questionForm"
-          (ngSubmit)="onNext(quizService.questions?._embedded?.questions[quizService.qnProgress]?.id)" class="text-left">
-          <div style="margin-left: 20%;">
-            <mat-radio-group
-            aria-labelledby="example-radio-group-label"
-            class="example-radio-group"
-            formControlName="option">
-            <mat-radio-button class="example-radio-button" [value]="1">
-              {{quizService.questions?._embedded?.questions[quizService.qnProgress]?.option_1}}
-            </mat-radio-button><br>
-            <mat-radio-button class="example-radio-button" [value]="2">
-              {{quizService.questions?._embedded?.questions[quizService.qnProgress]?.option_2}}
-            </mat-radio-button><br>
-            <mat-radio-button class="example-radio-button" [value]="3">
-              {{quizService.questions?._embedded?.questions[quizService.qnProgress]?.option_3}}
-            </mat-radio-button><br>
-            <mat-radio-button class="example-radio-button" [value]="4">
-              {{quizService.questions?._embedded?.questions[quizService.qnProgress]?.option_4}}
-            </mat-radio-button>
-          </mat-radio-group>
-          </div>
-          <div class="row" style="margin-top: 10px;">
-            <div class="col-sm-2 offset-sm-4">
-              <button class="btn btn-primary" type="button" (click)="onBack()"
-                [disabled]="quizService.qnProgress===0">Back
-              </button>
-            </div>
-            <div class="col-sm-2">
-              <button class="btn btn-primary" type="submit">Next
-              </button>
-            </div>
-          </div>
-        </form>
+    <div >
+    <div class="col-md-4 content-center" >
+      <div class="card card-login card-plain" style="margin-top: 60%;">
+        <h2>Your score is</h2><br>
+        <h2>{{quizService.score}}/10</h2>
+        <button class="btn btn-link" style="color:white" routerLink="/home"><h4>OK</h4></button>
       </div>
     </div>
+  </div>
 </div>
 </div>

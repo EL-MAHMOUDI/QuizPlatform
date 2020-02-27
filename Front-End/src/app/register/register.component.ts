@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { passwordMatchingValidator } from './validators/passwordMatchingValidator';
+import { RegisterService } from './register.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -8,7 +10,7 @@ import { passwordMatchingValidator } from './validators/passwordMatchingValidato
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-
+  success = true;
   hide = true;
 
   registerForm = new FormGroup(
@@ -19,7 +21,7 @@ export class RegisterComponent implements OnInit {
       email: new FormControl('',[Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required,
       Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]),
-      confirmedPassword: new FormControl(''),
+      passwordConfirmation: new FormControl(''),
     }, { validators: passwordMatchingValidator }
   )
     firstName = this.registerForm.get('firstName');
@@ -27,14 +29,10 @@ export class RegisterComponent implements OnInit {
     username= this.registerForm.get('username');
     email = this.registerForm.get('email');
     password = this.registerForm.get('password');
-    confirmedPassword = this.registerForm.get('confirmedPassword');
-  constructor() { }
+    passwordConfirmation = this.registerForm.get('passwordConfirmation');
+  constructor(private registerService: RegisterService, private router: Router) { }
 
   ngOnInit() {
-  }
-
-  onRegister(){
-    console.log(this.registerForm.value);
   }
 
   getFirstNameErrorMessage(){
@@ -54,7 +52,7 @@ export class RegisterComponent implements OnInit {
     this.password.hasError('pattern') ? 'Weak Password' :
         '';
   }
-  getConfirmedPasswordErrorMessage(){
+  getPasswordConfirmationErrorMessage(){
     return this.registerForm.hasError('passwordMatching')? 'Passwords don\'t match':'';
   }
   getEmailErrorMessage(){
@@ -68,5 +66,12 @@ export class RegisterComponent implements OnInit {
     this.username.hasError('maxlength') ? 'Not more than 15 characters':
         '';
   }
-
+  
+  onRegister(){
+    this.registerService.register(this.registerForm.value)
+      .subscribe(
+        data => this.router.navigateByUrl('/login'),
+        error => this.success = false
+        )
+  }
 }

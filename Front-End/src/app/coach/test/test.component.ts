@@ -10,6 +10,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { CoachService } from 'app/shared/services/coach.service';
 import { QuestionComponent } from '../question/question.component';
 import { Test } from '../test';
+import { AuthenticationService } from 'app/shared/services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-test',
@@ -33,7 +35,12 @@ export class TestComponent{
   @ViewChild('categoryInput') categoryInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
-  constructor(public dialog: MatDialog, private coachService:CoachService) {
+  constructor(
+    public dialog: MatDialog, 
+    private coachService:CoachService, 
+    private authenticationService: AuthenticationService,
+    private router: Router
+    ) {
     this.filteredCategories = this.categoryCtrl.valueChanges.pipe(
         startWith(null),
         map((category: string | null) => category ? this._filter(category) : this.allCategories.slice()));
@@ -96,11 +103,18 @@ export class TestComponent{
   }
   onAddTest(){
     let test = new Test();
-    test.username = 'amine';
+    test.username = this.authenticationService.getUser();
     test.difficulty = this.testLevel;
-    test.category = this.categories;
+    test.category = this.categories[0];
     test.questions = this.coachService.questions;
-    console.log(test);
+    this.coachService.pushTest(test)
+      .subscribe(
+        data => {
+          console.log(data);
+          this.coachService.questions = [];
+          this.router.navigateByUrl('/coach/profile')
+        }
+      );
   }
 
 }

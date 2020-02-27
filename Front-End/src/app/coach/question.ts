@@ -1,9 +1,9 @@
 export class Question {
     id: string;
     question: string;
-    option1: string;
-    option2: string;
-    option3: string;
-    option4: string;
+    option_1: string;
+    option_2: string;
+    option_3: string;
+    option_4: string;
     answer: string;
 }

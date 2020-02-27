@@ -41,10 +41,10 @@ export class QuestionComponent implements OnInit {
     let question = new Question();
     question.id ='';
     question.question = this.questionForm.get('question').value;
-    question.option1 = this.questionForm.get('option1').value;
-    question.option2 = this.questionForm.get('option2').value;
-    question.option3 = this.questionForm.get('option3').value;
-    question.option4 = this.questionForm.get('option4').value;
+    question.option_1 = this.questionForm.get('option1').value;
+    question.option_2 = this.questionForm.get('option2').value;
+    question.option_3 = this.questionForm.get('option3').value;
+    question.option_4 = this.questionForm.get('option4').value;
     question.answer = this.questionForm.get('answer').value;
     this.coahService.addQuestion(question);
     this.dialogRef.close();

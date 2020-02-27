@@ -2,6 +2,7 @@ package com.mahmoudi.quiz.configs;
 
 import com.mahmoudi.quiz.entities.Participant;
 import com.mahmoudi.quiz.entities.Question;
+import com.mahmoudi.quiz.entities.Test;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
@@ -19,6 +20,7 @@ public class DataRestConfigurer {
             public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
                 config.exposeIdsFor(Question.class);
                 config.exposeIdsFor((Participant.class));
+                config.exposeIdsFor((Test.class));
 
             }
         };

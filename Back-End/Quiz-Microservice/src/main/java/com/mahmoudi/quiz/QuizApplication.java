@@ -2,8 +2,10 @@ package com.mahmoudi.quiz;
 
 import com.mahmoudi.quiz.dao.ParticipantRepository;
 import com.mahmoudi.quiz.dao.QuestionRepository;
+import com.mahmoudi.quiz.dao.TestRepository;
 import com.mahmoudi.quiz.entities.Participant;
 import com.mahmoudi.quiz.entities.Question;
+import com.mahmoudi.quiz.entities.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -20,12 +22,13 @@ public class QuizApplication {
     private QuestionRepository questionRepository;
     @Autowired
     private ParticipantRepository participantRepository;
+    @Autowired
+    private TestRepository testRepository;
     public static void main(String[] args) {
         SpringApplication.run(QuizApplication.class, args);
     }
 
     @Bean
-    @Transactional
     public CommandLineRunner dataLoader() throws Exception{
         return args -> {
           List<Question> questions = new ArrayList<>();
@@ -37,7 +40,7 @@ public class QuizApplication {
           Question q6 = new Question(null, "What is the minimum value of char type. Select the one correct answer ?", "0","-215","-128","-215 - 1",2);
           Question q7 = new Question(null, "What is the minimum value of char type. Select the one correct answer ?", "0","-215","-128","-215 - 1",2);
           Question q8 = new Question(null, "What is the minimum value of char type. Select the one correct answer ?", "0","-215","-128","-215 - 1",2);
-          Question q9 = new Question(null, "What is the minimum value of char type. Select the one correct answer ?", "0","-215","-128","-215 - 1",2);          questions.add(q1);
+          Question q9 = new Question(null, "What is the minimum value of char type. Select the one correct answer ?", "0","-215","-128","-215 - 1",2);
           Question q10 = new Question(null, "What is the minimum value of char type. Select the one correct answer ?", "0","-215","-128","-215 - 1",2);
           questions.add(q1);
           questions.add(q2);
@@ -49,16 +52,12 @@ public class QuizApplication {
           questions.add(q8);
           questions.add(q9);
           questions.add(q10);
-          questionRepository.saveAll(questions);
-
-          List<Participant> particpants = new ArrayList<>();
-          Participant p1 = new Participant(null, "amine", "amine@mahmoudi", 10);
-          Participant p2 = new Participant(null, "med", "med@Khmaycia", 8);
-          Participant p3 = new Participant(null, "turki", "Karim@turki", 3);
-          particpants.add(p1);
-          particpants.add(p2);
-          particpants.add(p3);
-          participantRepository.saveAll(particpants);
+          Test test = new Test();
+          test.setUsername("java_coach");
+          test.setCategorie("Java");
+          test.setTestLevel("Medium");
+          test.setQuestions(questionRepository.saveAll(questions));
+          testRepository.save(test);
 
         };
     }

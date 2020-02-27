@@ -7,20 +7,12 @@
               <div class="photo-container">
                   <img src="assets/img/ryan.jpg" alt="">
               </div>
-              <h3 class="title">Ryan Scheinder</h3>
-              <p class="category">Photographer</p>
+              <h3 class="title">{{coachDetails.firstName}} {{coachDetails.lastName}}</h3>
+              <p class="category">{{coachDetails.email}}</p>
               <div class="content">
                   <div class="social-description">
-                      <h2>26</h2>
-                      <p>Comments</p>
-                  </div>
-                  <div class="social-description">
-                      <h2>26</h2>
-                      <p>Comments</p>
-                  </div>
-                  <div class="social-description">
-                      <h2>48</h2>
-                      <p>Bookmarks</p>
+                      <h2>{{testsAdded._embedded.tests.length}}</h2>
+                      <p>Total Contribution</p>
                   </div>
               </div>
           </div>

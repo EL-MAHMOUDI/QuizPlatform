@@ -4,6 +4,7 @@ import com.mahmoudi.authenticationmicroservice.dao.AppRoleRepository;
 import com.mahmoudi.authenticationmicroservice.dao.AppUserRepository;
 import com.mahmoudi.authenticationmicroservice.entities.AppRole;
 import com.mahmoudi.authenticationmicroservice.entities.AppUser;
+import com.mahmoudi.authenticationmicroservice.entities.Contact;
 import com.mahmoudi.authenticationmicroservice.services.AccountService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,17 +44,17 @@ public class AuthenticationMicroserviceApplication {
 
             Stream.of("student", "student2", "student3", "student4").forEach(
                     username -> {
-                        accountService.saveUser(username, "amineM@1234", "amineM@1234");
+                        accountService.saveUser(username, "amineM@1234", "amineM@1234", null);
                         accountService.addRoleToUser(username, "STUDENT");
                     }
             );
             Stream.of("coach","java_coach", "spring_coach", "nodeJS_coach").forEach(
                     username -> {
-                        accountService.saveUser(username, "amineM@1234", "amineM@1234");
+                        accountService.saveUser(username, "amineM@1234", "amineM@1234", null);
                         accountService.addRoleToUser(username, "COACH");
                     }
             );
-            accountService.saveUser("admin", "amineM@1234", "amineM@1234");
+            accountService.saveUser("admin", "amineM@1234", "amineM@1234", null);
             accountService.addRoleToUser("admin", "ADMIN");
         };
     }

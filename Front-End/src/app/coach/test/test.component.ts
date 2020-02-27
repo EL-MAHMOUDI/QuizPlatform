@@ -113,7 +113,7 @@ export class TestComponent{
           console.log(data);
           this.coachService.questions = [];
           this.router.navigateByUrl('/coach/profile')
-        }
+        },
       );
   }
 

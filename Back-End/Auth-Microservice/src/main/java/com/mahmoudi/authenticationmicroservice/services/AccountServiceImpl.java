@@ -4,6 +4,7 @@ import com.mahmoudi.authenticationmicroservice.dao.AppRoleRepository;
 import com.mahmoudi.authenticationmicroservice.dao.AppUserRepository;
 import com.mahmoudi.authenticationmicroservice.entities.AppRole;
 import com.mahmoudi.authenticationmicroservice.entities.AppUser;
+import com.mahmoudi.authenticationmicroservice.entities.Contact;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,7 @@ public class AccountServiceImpl implements  AccountService{
 
 
     @Override
-    public AppUser saveUser(String username, String password, String confirmedPassword) {
+    public AppUser saveUser(String username, String password, String confirmedPassword, Contact contact) {
         AppUser user = loadUserByUsername(username);
         if(user != null) throw new RuntimeException("Username is already taken");
         System.out.println(password);
@@ -33,6 +34,7 @@ public class AccountServiceImpl implements  AccountService{
         user = new AppUser();
         user.setUsername(username);
         user.setPassword(bCryptPasswordEncoder.encode(password));
+        user.setContact(contact);
         user.setActive(true);
         return appUserRepository.save(user);
     }

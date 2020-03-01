@@ -1,3 +1,50 @@
-<p>
-  pass-test works!
-</p>
+<div class="page-header">
+  <div class="page-header-image" style="background-image:url(assets/img/Back2.jpg)"></div>
+  <div class="container">
+    <div class="col-md-4 content-center">
+      <div class="card card-login card-plain text-left">
+        <form [formGroup]="formGroup" *ngIf="formArray.length > 0">
+          <mat-horizontal-stepper formArrayName="formArray" linear style="background-color: rgba(255, 255, 255,0);">
+            <ng-template matStepperIcon="last">
+              <mat-icon>home</mat-icon>
+            </ng-template>
+            <ng-template matStepperIcon="edit">
+              <mat-icon>done</mat-icon>
+            </ng-template>
+            <div *ngFor="let question of questions; let i=index">
+              <mat-step [stepControl]="formArray.get([i])">
+                <h6>{{question.question}}</h6>
+                <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+                  [formControlName]="i">
+                  <mat-radio-button class="example-radio-button" value="1">
+                    {{question.option_1}}
+                  </mat-radio-button>
+                  <mat-radio-button class="example-radio-button" value="2">
+                    {{question.option_2}}
+                  </mat-radio-button>
+                  <mat-radio-button class="example-radio-button" value="3">
+                    {{question.option_3}}
+                  </mat-radio-button>
+                  <mat-radio-button class="example-radio-button" value="4">
+                    {{question.option_4}}
+                  </mat-radio-button>
+                </mat-radio-group>
+
+                <button mat-button matStepperPrevious *ngIf="i>0" class="btn btn-primary btn-round">Back</button>
+                <button mat-button matStepperNext class="btn btn-primary btn-round">Next</button>
+
+              </mat-step>
+            </div>
+            <mat-step state="last"> 
+              <h6>You made it !</h6>
+              <div>
+                <button mat-button matStepperPrevious class="btn btn-primary btn-round">Back</button>
+                <button mat-button (click)="onSubmit()" class="btn btn-primary btn-round">Sumbit</button>
+              </div>
+            </mat-step>
+          </mat-horizontal-stepper>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

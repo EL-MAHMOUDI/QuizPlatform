@@ -33,8 +33,9 @@
                   </mat-radio-group>
                   </div>
                   <div>
-                      <button class="btn btn-primary btn-round" type="button">
-                          <i style="margin-right: 2px;" class="now-ui-icons ui-1_simple-add"></i>I am ready
+                      <button class="btn btn-primary btn-round" type="button" (click)="onReady()" [disabled]="!isValid()">
+                        I am ready
+                          <i style="margin-left: 2px;" class="now-ui-icons sport_user-run"></i>
                       </button>
                   </div>
           </div>

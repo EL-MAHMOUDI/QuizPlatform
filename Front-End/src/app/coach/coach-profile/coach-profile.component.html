@@ -7,11 +7,11 @@
               <div class="photo-container">
                   <img src="assets/img/ryan.jpg" alt="">
               </div>
-              <h3 class="title">{{coachDetails.firstName}} {{coachDetails.lastName}}</h3>
-              <p class="category">{{coachDetails.email}}</p>
+              <h3 class="title">{{coachDetails?.firstName}} {{coachDetails?.lastName}}</h3>
+              <p class="category">{{coachDetails?.email}}</p>
               <div class="content">
                   <div class="social-description">
-                      <h2>{{testsAdded._embedded.tests.length}}</h2>
+                      <h2>{{testsAdded?._embedded.tests.length}}</h2>
                       <p>Total Contribution</p>
                   </div>
               </div>
@@ -34,71 +34,32 @@
           <div class="row">
               <div class="col-md-12">
                   <h4 class="title text-center">My Portfolio</h4>
-                    <ngb-tabset [justify]="'center'" type="pills" class="nav nav-pills nav-pills-primary  nav-pills-just-icons justify-content-center tab-space">
-                        <ngb-tab>
-                          <ng-template ngbTabTitle>
-                            <i class="now-ui-icons design_image"></i>
-                          </ng-template>
-                            <ng-template ngbTabContent>
-                              <div class="row">
-                                <div class="col-md-10 ml-auto mr-auto">
-                                    <div class="row collections">
-                                        <div class="col-md-6">
-                                            <img src="assets/img/bg1.jpg" alt="" class="img-raised">
-                                            <img src="assets/img/bg3.jpg" alt="" class="img-raised">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <img src="assets/img/bg8.jpg" alt="" class="img-raised">
-                                            <img src="assets/img/bg7.jpg" alt="" class="img-raised">
-                                        </div>
-                                    </div>
-                                </div>
-                              </div>
-                            </ng-template>
-                        </ngb-tab>
-                        <ngb-tab>
-                          <ng-template ngbTabTitle>
-                            <i class="now-ui-icons location_world"></i>
-                          </ng-template>
-                            <ng-template ngbTabContent>
-                              <div class="row">
-                                <div class="col-md-10 ml-auto mr-auto">
-                                    <div class="row collections">
-                                        <div class="col-md-6">
-                                            <img src="assets/img/bg6.jpg" class="img-raised">
-                                            <img src="assets/img/bg11.jpg" alt="" class="img-raised">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <img src="assets/img/bg7.jpg" alt="" class="img-raised">
-                                            <img src="assets/img/bg8.jpg" alt="" class="img-raised">
-                                        </div>
-                                    </div>
-                                </div>
-                              </div>
-                            </ng-template>
-                        </ngb-tab>
-                        <ngb-tab>
-                          <ng-template ngbTabTitle>
-                            <i class="now-ui-icons sport_user-run"></i>
-                          </ng-template>
-                            <ng-template ngbTabContent>
-                              <div class="row">
-                                <div class="col-md-10 ml-auto mr-auto">
-                                    <div class="row collections">
-                                        <div class="col-md-6">
-                                            <img src="assets/img/bg3.jpg" alt="" class="img-raised">
-                                            <img src="assets/img/bg8.jpg" alt="" class="img-raised">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <img src="assets/img/bg7.jpg" alt="" class="img-raised">
-                                            <img src="assets/img/bg6.jpg" class="img-raised">
-                                        </div>
-                                    </div>
-                                </div>
-                              </div>
-                            </ng-template>
-                        </ngb-tab>
-                    </ngb-tabset>
+                  <table class="table" *ngIf="testsAdded?._embedded.tests.length>0">
+                    <thead>
+                      <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Level</th>
+                        <th scope="col">Manage</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let test of testsAdded?._embedded.tests, let i=index">
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{testsAdded?._embedded.tests[i].categorie}}</td>
+                        <td>{{testsAdded?._embedded.tests[i].testLevel}}</td>
+                        <td>
+                          <i class="material-icons" style="margin-right: 10px; color: teal;">
+                            edit
+                          </i>
+                          <i class="material-icons" style="color: red;">
+                            delete_forever
+                          </i> 
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
               </div>
           </div>
       </div>

@@ -1,5 +1,6 @@
 package com.mahmoudi.quiz.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,5 +21,6 @@ public class Question {
     private String option_2;
     private String option_3;
     private String option_4;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private int answer;
 }

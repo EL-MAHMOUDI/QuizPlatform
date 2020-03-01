@@ -15,7 +15,7 @@ import java.util.List;
 @CrossOrigin("*")
 @RequestMapping("/coach")
 @RestController
-public class TestController {
+public class CoachController {
     @Autowired
     private TestService testService;
     @PostMapping("/addTest")

@@ -36,7 +36,7 @@
                                         <mat-error style="color: white" *ngIf="password.invalid">
                                             {{getPasswordErrorMessage()}}</mat-error>
                                     </mat-form-field>
-                                    <mat-icon (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}
+                                    <mat-icon (click)="hide = !hide" style="cursor: pointer;">{{hide ? 'visibility_off' : 'visibility'}}
                                     </mat-icon>
                                     <div class="footer text-center">
                                     <button class="btn btn-primary btn-round btn-lg btn-block"

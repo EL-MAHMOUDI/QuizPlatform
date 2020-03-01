@@ -34,6 +34,7 @@ import { CoachProfileComponent } from './coach/coach-profile/coach-profile.compo
 import { StudentProfileComponent } from './student/student-profile/student-profile.component';
 import { PickTestComponent } from './student/pick-test/pick-test.component';
 import { PassTestComponent } from './student/pass-test/pass-test.component';
+import {MatStepperModule} from '@angular/material/stepper';
 
 @NgModule({
     declarations: [
@@ -73,7 +74,8 @@ import { PassTestComponent } from './student/pass-test/pass-test.component';
         MatDialogModule,
         MatSelectModule,
         MatSidenavModule,
-        MatCheckboxModule
+        MatCheckboxModule,
+        MatStepperModule
 
     ],
     entryComponents: [

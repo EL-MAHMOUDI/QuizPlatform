@@ -17,8 +17,8 @@ export class CoachProfileComponent implements OnInit {
   focus;
   focus1;
 
-  testsAdded: any;
   coachDetails: any;
+  testsAdded: any;
 
   constructor(private coachService: CoachService) { }
 

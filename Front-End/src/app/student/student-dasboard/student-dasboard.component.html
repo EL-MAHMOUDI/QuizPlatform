@@ -1,6 +1,6 @@
 <div style="margin-top: 4rem;">
     <mat-sidenav-container class="example-container">
-        <mat-sidenav #sidenav mode="side" [(opened)]="opened" style="width: 15%; background-color:rgb(255, 102, 0) ;">
+        <mat-sidenav #sidenav mode="side" [(opened)]="opened" style="width: 15%; background-color:rgb(44, 41, 41) ;">
             <div style="margin-top: 10rem; margin-left: 2rem;">
                 <button class="btn btn-link" style="color: white;" routerLink="profile">
                     <h6>View profile</h6>
@@ -12,7 +12,7 @@
         </mat-sidenav>
 
         <mat-sidenav-content style="text-align: center; ">
-            <p style="margin-top: 20px;">
+            <p style="margin-top: 20px; "> 
                 <mat-checkbox [(ngModel)]="opened">Show side navigation</mat-checkbox>
             </p>
             <router-outlet></router-outlet>

@@ -9,6 +9,7 @@ export class StudentService {
 
   test: any;
   testId:any;
+  answerWithScore: any;
 
   constructor(
     private httpClient: HttpClient,
@@ -29,8 +30,20 @@ export class StudentService {
     let answer = {
       username: this.authenticationService.getUser(),
       testId: this.testId,
+      category: this.test._embedded.tests[0].categorie,
+      testLevel: this.test._embedded.tests[0].testLevel,
       answers: answers
     }
+    console.log(answer);
     return this.httpClient.post('http://localhost:8081/student/submitAnswer', answer);
   }
+
+  getScore(){
+    return this.answerWithScore.score;
+  }
+
+  getPortFolio(){
+    return this.httpClient.get('http://localhost:8081/answers/search/findByUsername?username='+this.authenticationService.getUser());
+  }
+
 }

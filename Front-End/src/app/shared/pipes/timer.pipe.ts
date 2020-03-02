@@ -5,8 +5,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class TimerPipe implements PipeTransform {
 
-  transform(value: any, max:any): any {
-    return Math.floor((max-value)/3600)+':'+Math.floor((max-value)/60)+':'+Math.floor((max-value)%60);
+  transform(value: any): any {
+    return Math.floor((value)/3600)+':'+Math.floor((value)/60)+':'+Math.floor((value)%60);
   }
 
 }

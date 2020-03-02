@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl, FormArrayName } from '@angular/forms';
 import { StudentService } from 'app/shared/services/student.service';
 import { MAT_STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pass-test',
@@ -20,7 +21,10 @@ export class PassTestComponent implements OnInit {
     formArray: new FormArray([])
   });
   nbreQuestion: any;
-  constructor(private studentService: StudentService) { }
+  timer: number = 10;
+  interval: any;
+
+  constructor(private studentService: StudentService, private router: Router) { }
   get formArray() {
     return this.formGroup.get('formArray') as FormArray;
   }
@@ -37,15 +41,29 @@ export class PassTestComponent implements OnInit {
         for (let i = 0; i < this.nbreQuestion; i++) {
           this.formArray.push(new FormControl(''))
         }
+        this.startTimer();
       });
 
 
   }
 
   onSubmit() {
-    console.log(this.formGroup.value.formArray);
+    clearInterval(this.interval);
     this.studentService.submitAnswer(this.formGroup.value.formArray)
-                        .subscribe(data=>console.log("done"));
+      .subscribe(data => {
+        this.studentService.answerWithScore = data;
+        this.router.navigateByUrl('/student/score');
+      });
+  }
+
+  startTimer() {
+    this.interval = setInterval(() => {
+      if (this.timer > 0) {
+        this.timer--;
+      } else {
+        this.onSubmit();
+      }
+    }, 1000)
   }
 
 }

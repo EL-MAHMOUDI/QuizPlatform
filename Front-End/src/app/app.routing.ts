@@ -18,6 +18,7 @@ import { PickTestComponent } from './student/pick-test/pick-test.component';
 import { PassTestComponent } from './student/pass-test/pass-test.component';
 import { RoleGuard } from './shared/guards/role.guard';
 import { AuthGuard } from './shared/guards/auth.guard';
+import { ScoreComponent } from './student/score/score.component';
 
 const routes: Routes =[
     { path: '', redirectTo: 'landing', pathMatch: 'full' },
@@ -53,6 +54,7 @@ const routes: Routes =[
             {path: 'profile', component: StudentProfileComponent},
             {path: 'pick', component: PickTestComponent},
             {path: 'pass', component: PassTestComponent},
+            {path: 'score', component: ScoreComponent},
             {path:'**', redirectTo: 'profile', pathMatch: 'full'}
         ]
     },

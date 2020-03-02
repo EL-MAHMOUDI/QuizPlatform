@@ -2,6 +2,7 @@
   <div class="page-header-image" style="background-image:url(assets/img/Back2.jpg)"></div>
   <div class="container">
     <div class="col-md-4 content-center">
+      <p>Time elapsed: {{timer|timer}}</p>
       <div class="card card-login card-plain text-left">
         <form [formGroup]="formGroup" *ngIf="formArray.length > 0">
           <mat-horizontal-stepper formArrayName="formArray" linear style="background-color: rgba(255, 255, 255,0);">

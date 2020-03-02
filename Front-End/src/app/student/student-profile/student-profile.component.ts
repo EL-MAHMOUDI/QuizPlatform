@@ -18,6 +18,7 @@ export class StudentProfileComponent implements OnInit {
   focus1;
 
   studentDetails: any;
+  portfolio: any;
 
   constructor(private studentService: StudentService) { }
 
@@ -30,7 +31,11 @@ export class StudentProfileComponent implements OnInit {
     navbar.classList.add('navbar-transparent');
 
     this.studentService.getStudentDetails()
-              .subscribe(data => this.studentDetails = data)
+      .subscribe(data => this.studentDetails = data);
+    this.studentService.getPortFolio()
+      .subscribe(data => {
+        this.portfolio = data;
+      });
   }
   ngOnDestroy() {
     var body = document.getElementsByTagName('body')[0];

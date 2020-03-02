@@ -35,6 +35,7 @@ import { StudentProfileComponent } from './student/student-profile/student-profi
 import { PickTestComponent } from './student/pick-test/pick-test.component';
 import { PassTestComponent } from './student/pass-test/pass-test.component';
 import {MatStepperModule} from '@angular/material/stepper';
+import { ScoreComponent } from './student/score/score.component';
 
 @NgModule({
     declarations: [
@@ -55,7 +56,8 @@ import {MatStepperModule} from '@angular/material/stepper';
         CoachProfileComponent,
         StudentProfileComponent,
         PickTestComponent,
-        PassTestComponent
+        PassTestComponent,
+        ScoreComponent
     ],
     imports: [
         BrowserAnimationsModule,

@@ -10,5 +10,7 @@ import java.util.List;
 public class AnswerModel {
     private String username;
     private Long testId;
+    private String category;
+    private String testLevel;
     private List<Integer> answers;
 }

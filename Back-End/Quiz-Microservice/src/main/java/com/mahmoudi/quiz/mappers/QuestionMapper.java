@@ -1,5 +1,6 @@
-package com.mahmoudi.quiz.dto;
+package com.mahmoudi.quiz.mappers;
 
+import com.mahmoudi.quiz.dto.QuestionDto;
 import com.mahmoudi.quiz.entities.Question;
 import org.mapstruct.Mapper;
 

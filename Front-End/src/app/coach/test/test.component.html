@@ -37,6 +37,7 @@
                             <i style="margin-right: 2px;" class="now-ui-icons ui-1_simple-add"></i>Add question
                         </button>
                     </div>
+                   
             </div>
         </div>
     </div>
@@ -47,15 +48,15 @@
         <tr class="d-flex">
           <th class="col-1"></th>
           <th class="col-7">Question</th>
-          <th class="col-2">Answer</th>
+          <th class="col-2">Type</th>
           <th class="col-2">Manage</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let question of coachService.questions, let i=index" class="d-flex">
           <th class="col-1">{{i+1}}</th>
-          <td class="col-7">{{question.question}}</td>
-          <td class="col-2">{{question.answer}}</td>
+          <td class="col-7" [innerHtml]="question.question"></td>
+          <td class="col-2">{{question.type}}</td>
           <td class="col-2">
             <mat-icon aria-hidden="false" aria-label="Example home icon" style="margin-right: 20px; color: rgb(30, 148, 202); cursor: pointer;" >create</mat-icon>
             <mat-icon aria-hidden="false" aria-label="Example home icon" style="color:red; cursor: pointer;" (click)="onDelete(i)">delete_forever</mat-icon>    

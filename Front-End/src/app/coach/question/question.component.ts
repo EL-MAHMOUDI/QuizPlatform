@@ -4,10 +4,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Question } from '../question';
 import { CoachService } from 'app/shared/services/coach.service';
 
-export interface DialogData {
-  animal: string;
-  name: string;
-}
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
+
 
 @Component({
   selector: 'app-question',
@@ -16,6 +15,9 @@ export interface DialogData {
 })
 export class QuestionComponent implements OnInit {
 
+  public Editor = ClassicEditor;
+  editorData;
+  
   questionForm = new FormGroup({
     question : new FormControl('',[Validators.required]),
     option1 : new FormControl('', [Validators.required]),
@@ -24,14 +26,22 @@ export class QuestionComponent implements OnInit {
     option4 : new FormControl(''),
     answer : new FormControl('', [Validators.required]),
   })
+
+  questionType: string = 'QCM';
+  questionTypes: string[] = ['QCM', 'Writing'];
+
   constructor(
     public dialogRef: MatDialogRef<QuestionComponent>,
     private coahService: CoachService,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData
+    
     ) {}
   
   ngOnInit(): void {
       
+  }
+
+  isQCM(): boolean{
+    return this.questionType === 'QCM';
   }
   
   onCancel(): void {
@@ -40,6 +50,7 @@ export class QuestionComponent implements OnInit {
   onConfirm(){
     let question = new Question();
     question.id ='';
+    question.type = this.questionType;
     question.question = this.questionForm.get('question').value;
     question.option_1 = this.questionForm.get('option1').value;
     question.option_2 = this.questionForm.get('option2').value;
@@ -48,5 +59,14 @@ export class QuestionComponent implements OnInit {
     question.answer = this.questionForm.get('answer').value;
     this.coahService.addQuestion(question);
     this.dialogRef.close();
+  } 
+  onWritingConfirm(){
+    let question = new Question();
+    question.id ='';
+    question.type = this.questionType;
+    question.question = this.editorData;
+    this.coahService.addQuestion(question);
+    this.dialogRef.close();
+    console.log(question);
   }
 }

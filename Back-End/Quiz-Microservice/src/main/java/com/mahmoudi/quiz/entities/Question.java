@@ -16,6 +16,7 @@ public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String type;
     private String question;
     private String option_1;
     private String option_2;

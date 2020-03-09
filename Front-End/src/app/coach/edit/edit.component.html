@@ -26,11 +26,11 @@
             <div *ngFor="let question of formArray.controls; let i=index">
               <mat-step [stepControl]="formArray.get([i])">
                 <ng-container [formGroupName]="i">
-                <mat-form-field appearance="fill">
-                  <mat-label >Question</mat-label>
-                  <textarea matInput formControlName="question"></textarea>
-                </mat-form-field><br>
-
+                <div *ngIf="questions._embedded.questions[i].type === 'QCM'">
+                  <mat-form-field appearance="fill">
+                    <mat-label >Question</mat-label>
+                    <textarea matInput formControlName="question"></textarea>
+                  </mat-form-field><br>
                 <mat-form-field appearance="fill">
                   <mat-label >Option 1</mat-label>
                   <input matInput formControlName="option_1">
@@ -55,6 +55,13 @@
                   <mat-label >Answer</mat-label>
                   <input matInput formControlName="answer">
                 </mat-form-field><br>
+              </div>
+              <div *ngIf="questions._embedded.questions[i].type === 'Writing'">
+
+                  <mat-label >Question</mat-label>
+                  <ckeditor formControlName="question" [editor]="Editor"></ckeditor>
+
+              </div>
               </ng-container>
                 <button mat-button matStepperPrevious *ngIf="i>0" class="btn btn-primary btn-round">Back</button>
                 <button mat-button matStepperNext class="btn btn-primary btn-round">Next</button>

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl, FormArrayName } from '@angular/forms';
-import { StudentService } from 'app/shared/services/student.service';
 import { MAT_STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { CoachService } from 'app/shared/services/coach.service';
 import { switchMap } from 'rxjs/operators';
+
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
   selector: 'app-edit',
@@ -16,7 +17,7 @@ import { switchMap } from 'rxjs/operators';
   }]
 })
 export class EditComponent implements OnInit {
-
+  public Editor = ClassicEditor;
   questions: any = null;
   testDetails: any;
   testId: any;
@@ -29,9 +30,6 @@ export class EditComponent implements OnInit {
     testLevel: new FormControl(),
     formArray: new FormArray([])
   });
-  nbreQuestion: any;
-  timer: number = 10;
-  interval: any;
 
   constructor( private router: Router, private coachService: CoachService, private route: ActivatedRoute) { }
   get formArray() {
@@ -66,6 +64,7 @@ export class EditComponent implements OnInit {
         this.formArray.push(
           new FormGroup({
             id: new FormControl(this.questions._embedded.questions[i].id),
+            type: new FormControl(this.questions._embedded.questions[i].type),
             question: new FormControl(this.questions._embedded.questions[i].question),
             option_1: new FormControl(this.questions._embedded.questions[i].option_1),
             option_2: new FormControl(this.questions._embedded.questions[i].option_2),

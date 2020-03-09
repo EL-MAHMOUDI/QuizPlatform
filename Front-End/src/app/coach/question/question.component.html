@@ -1,5 +1,12 @@
-<h3 class="text-center text-primary" >Add a question</h3>
+<h3 class="text-center text-primary">Add a question</h3>
 <div mat-dialog-content>
+  <label id="example-radio-group-label">Pick your question type</label><br>
+  <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" [(ngModel)]="questionType">
+    <mat-radio-button class="example-radio-button" *ngFor="let type of questionTypes" [value]="type">
+      {{type}}
+    </mat-radio-button>
+  </mat-radio-group>
+  <div *ngIf="isQCM()">
   <form class="example-form" [formGroup]="questionForm" (ngSubmit)="onConfirm()">
     <mat-form-field class="example-full-width">
       <mat-label>Write your question in here...</mat-label>
@@ -46,11 +53,29 @@
     </mat-form-field>
     <div mat-dialog-actions class="row">
       <div class="col-md-3">
-        <button mat-button class="btn btn-danger btn-round"  type="button" (click)="onCancel()"><i style="margin-right: 5px;" class="now-ui-icons ui-1_simple-remove"></i>Cancel</button>
+        <button mat-button class="btn btn-danger btn-round" type="button" (click)="onCancel()"><i
+            style="margin-right: 5px;" class="now-ui-icons ui-1_simple-remove"></i>Cancel</button>
       </div>
       <div class="col-md-3 offset-md-6">
-      <button mat-button class="btn btn-success btn-round" [disabled]="questionForm.invalid"><i style="margin-right: 5px;" class="now-ui-icons ui-1_check"></i>Confirm</button>
-    </div>
+        <button mat-button class="btn btn-success btn-round" [disabled]="questionForm.invalid"><i
+            style="margin-right: 5px;" class="now-ui-icons ui-1_check"></i>Confirm</button>
+      </div>
     </div>
   </form>
+</div>
+ 
+<div *ngIf="!isQCM()">
+  <ckeditor [(ngModel)]="editorData" [editor]="Editor" data="<p>Writing question..</p>"></ckeditor>
+  <div mat-dialog-actions class="row">
+    <div class="col-md-3">
+      <button mat-button class="btn btn-danger btn-round" type="button" (click)="onCancel()"><i
+          style="margin-right: 5px;" class="now-ui-icons ui-1_simple-remove"></i>Cancel</button>
+    </div>
+    <div class="col-md-3 offset-md-6">
+      <button mat-button class="btn btn-success btn-round" (click)="onWritingConfirm()"><i
+          style="margin-right: 5px;" class="now-ui-icons ui-1_check"></i>Confirm</button>
+    </div>
+</div>
+
+</div>
 </div>

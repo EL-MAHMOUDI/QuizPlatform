@@ -37,6 +37,7 @@ import { PassTestComponent } from './student/pass-test/pass-test.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import { ScoreComponent } from './student/score/score.component';
 import { EditComponent } from './coach/edit/edit.component';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 @NgModule({
     declarations: [
@@ -79,7 +80,8 @@ import { EditComponent } from './coach/edit/edit.component';
         MatSelectModule,
         MatSidenavModule,
         MatCheckboxModule,
-        MatStepperModule
+        MatStepperModule,
+        CKEditorModule
 
     ],
     entryComponents: [

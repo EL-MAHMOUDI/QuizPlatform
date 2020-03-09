@@ -19,6 +19,7 @@ import { PassTestComponent } from './student/pass-test/pass-test.component';
 import { RoleGuard } from './shared/guards/role.guard';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { ScoreComponent } from './student/score/score.component';
+import { EditComponent } from './coach/edit/edit.component';
 
 const routes: Routes =[
     { path: '', redirectTo: 'landing', pathMatch: 'full' },
@@ -39,6 +40,7 @@ const routes: Routes =[
             {path: '', redirectTo: 'profile', pathMatch: 'full'},
             {path: 'profile', component: CoachProfileComponent},
             {path: 'manage', component: TestComponent},
+            {path: 'edit/:testId', component: EditComponent},
             {path:'**', redirectTo: 'profile', pathMatch: 'full'}
         ]
     },
@@ -53,7 +55,7 @@ const routes: Routes =[
             {path: '', redirectTo: 'profile', pathMatch: 'full'},
             {path: 'profile', component: StudentProfileComponent},
             {path: 'pick', component: PickTestComponent},
-            {path: 'pass', component: PassTestComponent},
+            {path: 'pass/:testId', component: PassTestComponent},
             {path: 'score', component: ScoreComponent},
             {path:'**', redirectTo: 'profile', pathMatch: 'full'}
         ]

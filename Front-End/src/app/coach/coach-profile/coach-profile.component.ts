@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as Rellax from 'rellax';
 import { CoachService } from 'app/shared/services/coach.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-coach-profile',
@@ -20,7 +21,7 @@ export class CoachProfileComponent implements OnInit {
   coachDetails: any;
   testsAdded: any;
 
-  constructor(private coachService: CoachService) { }
+  constructor(private coachService: CoachService, private router: Router) { }
 
   ngOnInit() {
     var rellaxHeader = new Rellax('.rellax-header');
@@ -40,6 +41,16 @@ export class CoachProfileComponent implements OnInit {
     body.classList.remove('profile-page');
     var navbar = document.getElementsByTagName('nav')[0];
     navbar.classList.remove('navbar-transparent');
+  }
+
+
+
+  onDelete(testId) {
+    this.coachService.removeTest(testId).subscribe(data =>{
+      this.coachService.getAllTest()
+      .subscribe(data => this.testsAdded = data);
+    } );
+  
   }
 
 }

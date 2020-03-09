@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl, FormArrayName } from '@angular/forms';
 import { StudentService } from 'app/shared/services/student.service';
 import { MAT_STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-pass-test',
@@ -21,16 +22,24 @@ export class PassTestComponent implements OnInit {
     formArray: new FormArray([])
   });
   nbreQuestion: any;
-  timer: number = 10;
+  timer: number = 1000;
   interval: any;
 
-  constructor(private studentService: StudentService, private router: Router) { }
+  constructor(
+    private studentService: StudentService,
+    private router: Router,
+    private route: ActivatedRoute
+    ) { }
   get formArray() {
     return this.formGroup.get('formArray') as FormArray;
   }
   ngOnInit() {
+    const testQuestionsObservable = this.route.paramMap.pipe(
+      switchMap((params: ParamMap) =>
+        this.studentService.getQuestions(params.get('testId')))
+    );
 
-    this.studentService.getQuestions()
+    testQuestionsObservable
       .subscribe(data => {
         this.questions = data;
 
@@ -52,6 +61,7 @@ export class PassTestComponent implements OnInit {
     this.studentService.submitAnswer(this.formGroup.value.formArray)
       .subscribe(data => {
         this.studentService.answerWithScore = data;
+        console.log(this.studentService.answerWithScore);
         this.router.navigateByUrl('/student/score');
       });
   }

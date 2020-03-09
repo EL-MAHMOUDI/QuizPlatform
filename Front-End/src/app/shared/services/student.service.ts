@@ -21,17 +21,18 @@ export class StudentService {
   pickTest(categorie, testLevel){
     return this.httpClient.get('http://localhost:8081/tests/search/findByCategorieAndTestLevel?categorie='+categorie+'&testLevel='+testLevel);
   }
-  
-  getQuestions(){
-    return this.httpClient.get('http://localhost:8081/tests/'+this.testId+'/questions');
+  listAllTests(){
+    return this.httpClient.get('http://localhost:8081/tests');
+  }
+  getQuestions(testId){
+    this.testId = testId;
+    return this.httpClient.get('http://localhost:8081/tests/'+testId+'/questions');
   }
 
   submitAnswer(answers:any){
     let answer = {
       username: this.authenticationService.getUser(),
       testId: this.testId,
-      category: this.test._embedded.tests[0].categorie,
-      testLevel: this.test._embedded.tests[0].testLevel,
       answers: answers
     }
     console.log(answer);

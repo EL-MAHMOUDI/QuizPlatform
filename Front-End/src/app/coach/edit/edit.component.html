@@ -1,0 +1,74 @@
+
+  <div class="container">
+
+        <form [formGroup]="formGroup" *ngIf="formArray.length > 0">
+          <div class="row">
+            <div class="col-md-4 offset-md-2"> 
+            <mat-form-field appearance="fill">
+              <mat-label >Ctegory</mat-label>
+              <input matInput formControlName="categorie">
+            </mat-form-field>
+          </div>
+          <div class="col-md-4">
+            <mat-form-field appearance="fill">
+              <mat-label >Test Level</mat-label>
+              <input matInput formControlName="testLevel">
+            </mat-form-field>
+          </div>
+          </div>
+          <mat-horizontal-stepper formArrayName="formArray" linear style="background-color: rgba(255, 255, 255,0);">
+            <ng-template matStepperIcon="last">
+              <mat-icon>home</mat-icon>
+            </ng-template>
+            <ng-template matStepperIcon="edit">
+              <mat-icon>done</mat-icon>
+            </ng-template>
+            <div *ngFor="let question of formArray.controls; let i=index">
+              <mat-step [stepControl]="formArray.get([i])">
+                <ng-container [formGroupName]="i">
+                <mat-form-field appearance="fill">
+                  <mat-label >Question</mat-label>
+                  <textarea matInput formControlName="question"></textarea>
+                </mat-form-field><br>
+
+                <mat-form-field appearance="fill">
+                  <mat-label >Option 1</mat-label>
+                  <input matInput formControlName="option_1">
+                </mat-form-field><br>
+
+                <mat-form-field appearance="fill">
+                  <mat-label >Option 2</mat-label>
+                  <input matInput formControlName="option_2">
+                </mat-form-field><br>
+
+                <mat-form-field appearance="fill">
+                  <mat-label >Option 3</mat-label>
+                  <input matInput formControlName="option_3">
+                </mat-form-field><br>
+
+                <mat-form-field appearance="fill">
+                  <mat-label >Option 4</mat-label>
+                  <input matInput formControlName="option_4">
+                </mat-form-field><br>
+
+                <mat-form-field appearance="fill">
+                  <mat-label >Answer</mat-label>
+                  <input matInput formControlName="answer">
+                </mat-form-field><br>
+              </ng-container>
+                <button mat-button matStepperPrevious *ngIf="i>0" class="btn btn-primary btn-round">Back</button>
+                <button mat-button matStepperNext class="btn btn-primary btn-round">Next</button>
+
+              </mat-step>
+            </div>
+            <mat-step state="last"> 
+              <h6>End of test.</h6>
+              <div>
+                <button mat-button matStepperPrevious class="btn btn-primary btn-round">Back</button>
+                <button mat-button (click)="onSubmit()" class="btn btn-primary btn-round">Sumbit</button>
+              </div>
+            </mat-step>
+          </mat-horizontal-stepper>
+        </form>
+
+  </div>

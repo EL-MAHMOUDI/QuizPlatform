@@ -1,11 +1,11 @@
 <div class="wrapper">
-  <div class="page-header page-header-small" filter-color="orange">
-      <div class="page-header-image rellax-header" data-rellax-speed="-8" style="background-image: url('assets/img/bg5.jpg') ;">
+  <div class="page-header page-header-small" filter-color="blue">
+      <div class="page-header-image rellax-header" data-rellax-speed="-8" style="background-image: url('assets/img/coachBg.jpg') ;">
       </div>
       <div class="container">
           <div class="content-center">
               <div class="photo-container">
-                  <img src="assets/img/ryan.jpg" alt="">
+                  <img src="assets/img/eva.jpg" alt="">
               </div>
               <h3 class="title">{{coachDetails?.firstName}} {{coachDetails?.lastName}}</h3>
               <p class="category">{{coachDetails?.email}}</p>
@@ -46,13 +46,13 @@
                     <tbody>
                       <tr *ngFor="let test of testsAdded?._embedded.tests, let i=index">
                         <th scope="row">{{i+1}}</th>
-                        <td>{{testsAdded?._embedded.tests[i].categorie}}</td>
-                        <td>{{testsAdded?._embedded.tests[i].testLevel}}</td>
+                        <td>{{test.categorie}}</td>
+                        <td>{{test.testLevel}}</td>
                         <td>
-                          <i class="material-icons" style="margin-right: 10px; color: teal;">
+                          <i class="material-icons" style="margin-right: 10px; color: teal; cursor: pointer;" [routerLink]="['/coach/edit', test.id]">
                             edit
                           </i>
-                          <i class="material-icons" style="color: red;">
+                          <i class="material-icons" style="color: red; cursor: pointer;" (click)=onDelete(test.id)>
                             delete_forever
                           </i> 
                         </td>

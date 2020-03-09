@@ -27,6 +27,8 @@ export class PickTestComponent implements OnInit {
   testLevel: string="";
   levels: string[] = ['Easy', 'Medium', 'Difficult'];
 
+  listOfTests: any;
+
   @ViewChild('categoryInput') categoryInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
@@ -36,6 +38,8 @@ export class PickTestComponent implements OnInit {
         map((category: string | null) => category ? this._filter(category) : this.allCategories.slice()));
   }
   ngOnInit(): void {
+    this.studentService.listAllTests()
+            .subscribe(data => this.listOfTests = data);
   }
 
   add(event: MatChipInputEvent): void {
@@ -75,20 +79,5 @@ export class PickTestComponent implements OnInit {
     return this.allCategories.filter(category => category.toLowerCase().indexOf(filterValue) === 0);
   }
 
-  onReady(){
-    console.log(this.testLevel);
-    console.log(this.categories[0]);
-    this.studentService.pickTest(this.categories[0], this.testLevel)
-              .subscribe(data => {
-                this.studentService.test = data;
-                
-                this.studentService.testId = this.studentService.test._embedded.tests[0].id;
-                
-                this.router.navigateByUrl('/student/pass')
-              });
-  }
 
-  isValid(){
-    return this.testLevel.trim().length !== 0 && this.categories.length !==0;
-  }
 }

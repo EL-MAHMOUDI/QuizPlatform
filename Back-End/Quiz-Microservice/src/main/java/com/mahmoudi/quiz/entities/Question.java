@@ -21,6 +21,6 @@ public class Question {
     private String option_2;
     private String option_3;
     private String option_4;
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+   // @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private int answer;
 }

@@ -11,6 +11,7 @@ export class CoachService {
   questions: Question[]=[];
   constructor(private httpClient: HttpClient, private authenticationService: AuthenticationService) { }
   
+  
   addQuestion(question: Question){
     this.questions.push(question);
     console.log(this.questions);
@@ -30,6 +31,23 @@ export class CoachService {
 
   getCoachDetails(){
     return this.httpClient.get('http://localhost:8080/userDetails/'+this.authenticationService.getUser());
+  }
+
+
+  getQuestions(testId){
+    return this.httpClient.get('http://localhost:8081/tests/'+testId+'/questions')
+  }
+
+  getTestDetails(testId){
+    return this.httpClient.get('http://localhost:8081/tests/'+testId)
+  }
+
+  updateTest(testId, updatedTest){
+    return this.httpClient.post('http://localhost:8081/coach/editTest/'+testId,updatedTest);
+  }
+
+  removeTest(testId){
+    return this.httpClient.delete('http://localhost:8081/tests/'+testId);
   }
 
 }

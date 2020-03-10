@@ -15,51 +15,53 @@
             <h2>{{portfolio?._embedded.answers.length}}</h2>
             <p>Total Tests</p>
           </div>
+          <div>
+            <a href="#button" class="btn btn-primary btn-round btn-lg">Follow</a>
+            <a href="#button" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip" title="Follow me on Twitter">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#button" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip"
+              title="Follow me on Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
         </div>
+      
       </div>
     </div>
   </div>
-  <div class="section">
-    <div class="container">
-      <div class="button-container">
-        <a href="#button" class="btn btn-primary btn-round btn-lg">Follow</a>
-        <a href="#button" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip" title="Follow me on Twitter">
-          <i class="fab fa-twitter"></i>
-        </a>
-        <a href="#button" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip"
-          title="Follow me on Instagram">
-          <i class="fab fa-instagram"></i>
-        </a>
-      </div>
-      <h3 class="title">About me</h3>
-      <h5 class="description">An artist of considerable range, Ryan — the name taken by Melbourne-raised, Brooklyn-based
-        Nick Murphy — writes, performs and records all of his own music, giving it a warm, intimate feel with a solid
-        groove structure. An artist of considerable range.</h5>
-      <div class="row">
-        <div class="col-md-12">
-          <h4 class="title text-center">My Portfolio</h4>
-          <table class="table" *ngIf="portfolio?._embedded.answers.length>0">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Test Id</th>
-                <th scope="col">Category</th>
-                <th scope="col">Level</th>
-                <th scope="col">Score</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let answer of portfolio?._embedded.answers; let i=index">
-                <th scope="row">{{i+1}}</th>
-                <td>{{answer.testId}}</td>
-                <td>{{answer.category}}</td>
-                <td>{{answer.testLevel}}</td>
-                <td>{{answer.score}}%</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
+  
 </div>
+
+  <div class="container">
+
+    <h3 class="title" >About me</h3>
+    <h5>An artist of considerable range, Ryan — the name taken by Melbourne-raised, Brooklyn-based
+      Nick Murphy — writes, performs and records all of his own music, giving it a warm, intimate feel with a solid
+      groove structure. An artist of considerable range.</h5>
+    <div class="row">
+      <div class="col-md-12">
+        <h4 class="title text-center">My Portfolio</h4>
+        <table class="table" *ngIf="portfolio?._embedded.answers.length>0">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Test Id</th>
+              <th scope="col">Category</th>
+              <th scope="col">Level</th>
+              <th scope="col">Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let answer of portfolio?._embedded.answers; let i=index">
+              <th scope="row">{{i+1}}</th>
+              <td>{{answer.testId}}</td>
+              <td>{{answer.category}}</td>
+              <td>{{answer.testLevel}}</td>
+              <td>{{answer.score}}%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>

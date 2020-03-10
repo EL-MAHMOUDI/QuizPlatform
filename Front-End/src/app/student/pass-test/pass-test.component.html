@@ -14,9 +14,11 @@
             </ng-template>
             <div *ngFor="let question of questions; let i=index">
               <mat-step [stepControl]="formArray.get([i])">
+                <div [formGroupName]="i">
+                <div *ngIf="isQCM(question.type)">
                 <h6>{{question.question}}</h6>
                 <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
-                  [formControlName]="i">
+                  formControlName="answer">
                   <mat-radio-button class="example-radio-button" value="1">
                     {{question.option_1}}
                   </mat-radio-button>
@@ -30,7 +32,12 @@
                     {{question.option_4}}
                   </mat-radio-button>
                 </mat-radio-group>
-
+              </div>
+              <div *ngIf="!isQCM(question.type)">
+                <h6 [innerHTML]="question.question"></h6>
+                <ckeditor formControlName="answer" [editor]="Editor" style="color: black;"></ckeditor>
+              </div>
+              </div>
                 <button mat-button matStepperPrevious *ngIf="i>0" class="btn btn-primary btn-round">Back</button>
                 <button mat-button matStepperNext class="btn btn-primary btn-round">Next</button>
 

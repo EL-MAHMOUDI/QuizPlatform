@@ -5,6 +5,8 @@ import { MAT_STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
 @Component({
   selector: 'app-pass-test',
   templateUrl: './pass-test.component.html',
@@ -16,7 +18,7 @@ import { switchMap } from 'rxjs/operators';
   }]
 })
 export class PassTestComponent implements OnInit {
-
+  public Editor = ClassicEditor;
   questions: any = null;
   formGroup: FormGroup = new FormGroup({
     formArray: new FormArray([])
@@ -48,7 +50,10 @@ export class PassTestComponent implements OnInit {
         this.nbreQuestion = this.questions.length;
 
         for (let i = 0; i < this.nbreQuestion; i++) {
-          this.formArray.push(new FormControl(''))
+          this.formArray.push(new FormGroup({
+            type: new FormControl(this.questions[i].type),
+            answer: new FormControl('')
+          }))
         }
         this.startTimer();
       });
@@ -74,6 +79,10 @@ export class PassTestComponent implements OnInit {
         this.onSubmit();
       }
     }, 1000)
+  }
+
+  isQCM(questionType){
+    return questionType==='QCM';
   }
 
 }

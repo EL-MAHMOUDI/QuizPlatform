@@ -15,3 +15,7 @@
   .example-radio-button {
     margin: 5px;
   }
+
+  :host ::ng-deep .ck-editor__editable_inline {
+    min-height: 300px;
+}

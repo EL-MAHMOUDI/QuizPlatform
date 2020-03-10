@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./student-dasboard.component.scss']
 })
 export class StudentDasboardComponent implements OnInit {
-  opened: boolean;
+  opened: boolean=true;
   constructor() { }
 
   ngOnInit() {

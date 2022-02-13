@@ -29,7 +29,7 @@
     "@ckeditor/ckeditor5-angular": "^1.2.2",
     "@ckeditor/ckeditor5-build-classic": "^17.0.0",
     "@ng-bootstrap/ng-bootstrap": "4.1.0",
-    "ajv": "6.10.0",
+    "ajv": "6.12.3",
     "ajv-keywords": "3.4.0",
     "bootstrap": "4.0.0",
     "copy-webpack-plugin": "5.0.1",
